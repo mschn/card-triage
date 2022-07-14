@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand"
+      ><i class="bi bi-calendar-heart me-2"></i> Angular Card Triage</a
+    >
+    <div class="d-flex">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Find patient"
+        aria-label="Find patient"
+        [(ngModel)]="filterInput"
+        (input)="filterChanged()"
+      />
+    </div>
+  </div>
+</nav>

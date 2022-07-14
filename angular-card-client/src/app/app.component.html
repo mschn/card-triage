@@ -1,0 +1,40 @@
+<div class="h-100 d-flex flex-column overflow-auto bg-light">
+  <!-- navbar with filtering -->
+  <app-navbar></app-navbar>
+
+  <!-- responsive container with vertical scrolling -->
+  <div class="container flex-fill overflow-auto">
+    <div class="row">
+      <!-- network errors -->
+      <div
+        class="alert alert-danger mt-3"
+        role="alert"
+        *ngIf="dataService.getError() | async; let err"
+      >
+        <i class="bi bi-exclamation-triangle-fill"></i> {{ err.error }}<br />
+        {{ err.cause }}
+      </div>
+
+      <!-- left column: pending and rejected cards -->
+      <div class="col-12 col-md-6 mt-3">
+        <h4>TODO</h4>
+        <app-card-list
+          [cards]="
+            dataService.getCardsByStatus(
+              CardStatus.PENDING,
+              CardStatus.REJECTED
+            ) | async
+          "
+        ></app-card-list>
+      </div>
+
+      <!-- right column: done cards -->
+      <div class="col-12 col-md-6 mt-3">
+        <h4>Done</h4>
+        <app-card-list
+          [cards]="dataService.getCardsByStatus(CardStatus.DONE) | async"
+        ></app-card-list>
+      </div>
+    </div>
+  </div>
+</div>

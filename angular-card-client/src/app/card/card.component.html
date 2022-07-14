@@ -1,0 +1,39 @@
+<div class="card mt-2" *ngIf="card">
+  <div class="card-body">
+    <div class="row">
+      <!-- patient name -->
+      <div class="col-12 col-sm-9 col-md-6 col-lg-8">
+        <h5>{{ card.patient_name }}</h5>
+      </div>
+
+      <!-- control to change status -->
+      <div class="col-12 col-sm-3 col-md-6 col-lg-4">
+        <ng-select
+          [(ngModel)]="currentStatus"
+          [clearable]="false"
+          (change)="onStatusChange()"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            <app-status [status]="item"></app-status>
+          </ng-template>
+
+          <ng-option *ngFor="let status of nextStatus" [value]="status.id">
+            <app-status [status]="status.id"></app-status>
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+
+    <!-- arrhythmias list -->
+    <div>
+      <span
+        *ngFor="let arr of card.arrhythmias"
+        class="badge bg-secondary me-2"
+        >{{ arr }}</span
+      >
+    </div>
+
+    <!-- creation date -->
+    <div class="mt-2 small text-muted">Created {{ createdDistance }}</div>
+  </div>
+</div>

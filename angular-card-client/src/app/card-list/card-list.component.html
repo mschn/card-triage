@@ -1,0 +1,11 @@
+<div class="my-3">
+  <div *ngIf="(cards || []).length > 0; else empty">
+    <div *ngFor="let card of cards">
+      <app-card [card]="card"></app-card>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <div class="text-muted">This list is empty</div>
+  </ng-template>
+</div>
